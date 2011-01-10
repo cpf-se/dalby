@@ -1,0 +1,36 @@
+/*
+body			{ padding: 0 10% 0 10% }
+
+form.qt0,
+form.qt1,
+form.qt2,
+form.qt3		{ font-family: Verdana, Helvetica, sans-serif; font-size: 1.05em }
+
+.qt1 p,
+.qt2 p,
+.qt3 p			{ font-weight: bold }
+
+.qt1 legend,
+.qt2 legend,
+.qt3 legend		{ font-weight: bold }
+
+.qt1 fieldset,
+.qt2 fieldset,
+.qt3 fieldset		{ border: solid thin #ccc; background-color: #dfd }
+
+.qt1 label,
+.qt2 label		{ display: table-row; height: 3ex }
+
+.qt1 input,
+.qt2 input		{ position: relative; left: -1ex }
+
+.qt0 ol li,
+.qt1 ol li,
+.qt2 ol li,
+.qt3 ol li		{ list-style-type: lower-alpha }
+*/
+
+body			{ padding: 0 15% 0 15% ; font-size: 62.5% }
+
+form			{ font-family: Verdana, Helvetica, sans-serif ; font-size: 1.05em }
+
