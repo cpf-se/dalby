@@ -231,8 +231,8 @@ function login_form($title, $welcome) {
 	_foot();
 }
 
-require_once 'inc/question.inc';
-require_once 'inc/answer.inc';
+require_once 'inc/question.php';
+require_once 'inc/answer.php';
 
 function _pr_qt0(&$q) {
 	tag_push('p'); {

@@ -1,7 +1,7 @@
 <?php
 
-require_once 'inc/answer.inc';
-require_once 'inc/sql.inc';
+require_once 'inc/answer.php';
+require_once 'inc/sql.php';
 
 class question {
 	private $_id;

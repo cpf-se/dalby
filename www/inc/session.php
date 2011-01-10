@@ -1,10 +1,10 @@
 <?php
 
-require_once 'inc/sql.inc';
-require_once 'inc/html.inc';
-require_once 'inc/question.inc';
-require_once 'inc/patient.inc';
-require_once 'inc/response.inc';
+require_once 'inc/sql.php';
+require_once 'inc/html.php';
+require_once 'inc/question.php';
+require_once 'inc/patient.php';
+require_once 'inc/response.php';
 
 function go() {
 	if (isset($_REQUEST['question'])) {

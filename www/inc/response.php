@@ -1,7 +1,7 @@
 <?php
 
-require_once 'inc/sql.inc';
-require_once 'inc/patient.inc';
+require_once 'inc/sql.php';
+require_once 'inc/patient.php';
 
 class response {
 	private $_id;

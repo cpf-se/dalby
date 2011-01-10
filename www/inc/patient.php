@@ -1,6 +1,6 @@
 <?php
 
-require_once 'inc/sql.inc';
+require_once 'inc/sql.php';
 
 class patient {
 	private $_code;
