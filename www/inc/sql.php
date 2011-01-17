@@ -1,9 +1,7 @@
 <?php
+require_once 'defines.php';
 
-//$pg_connect_string  = 'host=localhost port=5432 dbname=dalby user=www_dalby password=www_dalby' ;
-$pg_connect_string  = 'dbname=dalby user=www_dalby password=www_dalby' ;
 //$pg_response_expiry = _MUL(array(60, 60, 24, 7)); // en vecka
-
 $pg_response_expiry = _MUL(array(60, 60));		// DEBUG: Bara en timma under test!!!
 
 function _QUERY($query, &$result) {
@@ -16,7 +14,7 @@ function _QUERY($query, &$result) {
 	//====================================================
 	//
 	//
-	$c = pg_connect($GLOBALS['pg_connect_string']) or die(pg_last_error());
+	$c = pg_connect(PG_CONNECT_STRING) or die(pg_last_error());
 	$r = pg_query($c, $query);
 	$status = 0;
 	while ($row = pg_fetch_array($r)) {
