@@ -30,7 +30,40 @@ form.qt3		{ font-family: Verdana, Helvetica, sans-serif; font-size: 1.05em }
 .qt3 ol li		{ list-style-type: lower-alpha }
 */
 
-body			{ padding: 0 15% 0 15% ; font-size: 62.5% }
+body			{ padding: 0 10% 0 10% ; font-family: 'Trebuchet MS', Verdana, Helvetica, sans-serif ; font-size: 62.5% ; background: white }
 
-form			{ font-family: Verdana, Helvetica, sans-serif ; font-size: 1.05em }
+/*
+body#login		{ padding: 0 15% 0 15% ; font-size: 62.5% }
+*/
+
+body#question		{ font-size: small ; letter-spacing: .1em }
+
+body#question
+div
+form
+span#prev		{ float: left ; padding-right: 2em }
+
+body#question
+div
+form
+div#main		{ float: left ; width: 80% }
+
+body#question
+div
+form
+span#next		{ float: left ; padding-left: 2em }
+
+.qt0 ol li		{ list-style-type: lower-alpha }
+
+div.mnemonics ol li	{ list-style-type: decimal }
+
+.qt1 label		{ display: table-row ; height: 5ex ; border: solid thin black }
+
+fieldset		{ border: solid thin #ccc }
+
+legend			{ font-weight: bold }
+
+/*
+form			{  font-size: 1.05em }
+*/
 

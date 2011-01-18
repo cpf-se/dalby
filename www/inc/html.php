@@ -388,9 +388,9 @@ function print_question($q) {
 	tag_push('body', array('id' => 'question')); {
 		tag_push('div', array('class' => 'qt' . $q->type())); {
 			tag_push('form', array('action' => '/', 'method' => 'get')); {
-				tag_push('div', array('id' => 'prev')); {
+				tag_push('span', array('id' => 'prev')); {
 					tag_push('input', array('type' => 'image', 'src' => 'im/prev.png', 'name' => 'prev'));
-					tag_pop('div');
+					tag_pop('span');
 				}
 				tag_push('div', array('id' => 'main')); {
 					tag_push('input', array('type' => 'hidden', 'name' => 'question', 'value' => $q->id()));
@@ -403,9 +403,9 @@ function print_question($q) {
 					}
 					tag_pop('div');
 				}
-				tag_push('div', array('id' => 'next')); {
+				tag_push('span', array('id' => 'next')); {
 					tag_push('input', array('type' => 'image', 'src' => 'im/next.png', 'name' => 'next'));
-					tag_pop('div');
+					tag_pop('span');
 				}
 				tag_pop('form');
 			}
