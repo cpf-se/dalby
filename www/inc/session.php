@@ -6,14 +6,38 @@ require_once 'inc/question.php';
 require_once 'inc/patient.php';
 require_once 'inc/response.php';
 
+function _collect() {
+	$response = $_SESSION['response'];
+
+	$values = array();
+
+	$keys = array_keys($_REQUEST);
+	foreach ($keys as $key) {
+		$qid = array();
+		if (!preg_match('/^q(\d+)$/', $key, $qid)) continue;
+
+		$aid = array();
+		if (!preg_match('/^a(\d+)$/', $_REQUEST[$key], $aid)) continue;
+
+		$values[] = array($response, $qid[1], $aid[1]);
+	}
+
+	if (!empty($values)) {
+		$into = 'responses_questions';
+		$variables = array('response', 'question', 'answer');
+		$insert = _INSERT($into, $variables, $values);
+		if (!_QUERY($insert, $result)) {
+			throw new Exception('Couldn\'t insert response components: ' . pg_last_error());
+		}
+	}
+}
+
 function go() {
 	if (isset($_REQUEST['question'])) {
 		$q = new question($_REQUEST['question']);
 		$order = $q->order();
 
-		//----------------------------------------------
-		// XXX: Ta hand om inkommande svar
-		//----------------------------------------------
+		_collect();
 
 		if (isset($_REQUEST['next_x'], $_REQUEST['next_y'])) { // going forward
 			$what = array('A.question');
