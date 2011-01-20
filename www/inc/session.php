@@ -32,12 +32,51 @@ function _collect() {
 	}
 }
 
+function _collect_spec4() {
+	$response = $_SESSION['response'];
+
+	$answers = explode(' ', $_REQUEST['answers']);
+
+	$value = 0;
+	$values = array();
+
+	$keys = array_keys($_REQUEST);
+	foreach ($keys as $key) {
+		$qid = array();
+		if (!preg_match('/^q(\d+)_(\d+)$/', $key, $qid)) continue;
+
+		// extra check
+		$aid = array();
+		if (!preg_match('/^a(\d+)$/', $_REQUEST[$key], $aid)) continue;
+		if ($qid[2] != $aid[1]) {
+			throw new Exception('Qid = ' . $qid[2] . ', Aid = ' . $aid[1]);
+		}
+
+		$akey = array_search($qid[2], $answers);
+		$value |= (1 << $akey);
+		$values[0] = array($response, $qid[1], $value);
+	}
+
+	if ($value != 0) {
+		$into = 'responses_questions';
+		$variables = array('response', 'question', 'answer');
+		$insert = _INSERT($into, $variables, $values);
+		if (!_QUERY($insert, $result)) {
+			throw new Exception("Couldn't insert response component, type 4,\n" . $insert . "\n" . pg_last_error());
+		}
+	}
+}
+
 function go() {
 	if (isset($_REQUEST['question'])) {
 		$q = new question($_REQUEST['question']);
 		$order = $q->order();
 
-		_collect();
+		if ($q->type() == 4) {
+			_collect_spec4();
+		} else {
+			_collect();
+		}
 
 		if (isset($_REQUEST['next_x'], $_REQUEST['next_y'])) { // going forward
 			$what = array('A.question');

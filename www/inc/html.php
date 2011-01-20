@@ -346,7 +346,7 @@ function _pr_qt3(&$q, &$lo, &$hi) { // Multi-choice, ett svar, horisontellt, lå
 			print($q->text());
 			tag_pop('legend');
 		}
-		$repos = $q->responses();
+		$resps = $q->responses();
 		foreach ($q->answers() as $a) {
 			tag_push('label'); {
 				$attrs = array('type' => 'radio', 'name' => 'q' . $q->id(), 'value' => 'a' . $a->id());
@@ -368,12 +368,20 @@ function _pr_qt4(&$q) { // Multi-choice, flera svar
 		tag_pop('p');
 	}
 	tag_push('fieldset'); {
-		//tag_push('legend'); {
-		//	tag_pop('legend');
-		//}
+		$answers = array();
+		foreach ($q->answers() as $a) {
+			$answers[] = $a->id();
+		}
+		tag_push('input', array('type' => 'hidden', 'name' => 'answers', 'value' => implode($answers, ' ')));
+		$resps = $q->responses();
 		foreach ($q->answers() as $a) {
 			tag_push('label'); {
-				tag_push('input', array('type' => 'checkbox', 'name' => 'q' . $q->id(), 'value' => 'a' . $a->id()));
+				$attrs = array('type' => 'checkbox', 'name' => 'q' . $q->id() . '_' . $a->id(), 'value' => 'a' . $a->id());
+				$akey = array_search($a->id(), $answers);
+				if ($resps != null && ((1 << $akey) & $resps[0]) != 0) {
+					$attrs['checked'] = 'checked';
+				}
+				tag_push('input', $attrs);
 				print($a->text());
 				tag_pop('label');
 			}
@@ -429,5 +437,4 @@ function print_error($e) {
 	}
 	_foot();
 }
-
 ?>
